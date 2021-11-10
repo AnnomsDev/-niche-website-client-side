@@ -1,9 +1,13 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../Hook/useAuth';
 import './Signin.css'
 
 const Signin = () => {
+    const { signInWithGoogle } = useAuth()
+
+
     return (
         <div className='signin-reg'>
             <form style={{ maxWidth: '300px' }}>
@@ -19,7 +23,7 @@ const Signin = () => {
                     size="small"
                 />
                 <TextField
-                    sx={{ width: '100%', mt: '2em' }}
+                    sx={{ width: '100%', mt: '1em' }}
                     label="Password"
                     size="small"
                 />
@@ -32,6 +36,7 @@ const Signin = () => {
                 <Button
                     sx={{ mt: '2em', width: '100%', fontWeight: 700 }}
                     variant='outlined'
+                    onClick={signInWithGoogle}
                 > Continue with Google</Button>
 
                 <Typography variant='p' sx={{ m: '1em' }}>

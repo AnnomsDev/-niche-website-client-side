@@ -1,22 +1,26 @@
 import './Navigation.css'
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom'
+import useAuth from '../../../Hook/useAuth';
+import { Button } from '@mui/material';
 
 
 const Navigation = () => {
-    const [clicked, setClicked] = useState(false)
+    const [isMenueOpen, setIsMenueOpen] = useState(false)
+    const { user } = useAuth()
+
 
     const handleClick = () => {
-        setClicked(!clicked)
+        setIsMenueOpen(!isMenueOpen)
     }
 
     return (
         <nav className='NavbarItems'>
             <h1 className="navbar-logo">Drone</h1>
             <div className="menu-icon" onClick={handleClick}>
-                <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+                <i className={isMenueOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
             </div>
-            <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
+            <ul className={isMenueOpen ? 'nav-menu active' : 'nav-menu'}>
                 <li>
 
                     <NavLink className='nav-links' to='/'>Home</NavLink>
@@ -24,9 +28,19 @@ const Navigation = () => {
                 <li>
                     <NavLink className='nav-links' to='/Explore'>Explore</NavLink>
                 </li>
-                <li>
-                    <NavLink className='nav-links' to='/signin'>Sign In</NavLink>
-                </li>
+                {!user && (
+                    <li>
+                        <NavLink className='nav-links' to='/signin'>Sign In</NavLink>
+                    </li>
+                )}
+                {user && (
+                    <li>
+                        <Button variant='contained'>Sign Out</Button>
+                    </li>
+                )}
+
+
+
             </ul>
         </nav>
     );
