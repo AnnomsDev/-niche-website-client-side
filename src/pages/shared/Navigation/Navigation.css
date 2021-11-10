@@ -1,0 +1,107 @@
+.NavbarItems{
+    background: linear-gradient(90deg, rgb(110,94,254) 0%, rgba(73,63,252,100%));
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.navbar-logo{
+    color: white;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+.nav-menu{
+    display: flex;
+    list-style: none;
+    text-align: center;
+    width: 70vw;
+    justify-content: end;
+    margin-left: 2rem;
+}
+
+.nav-links{
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+}
+.nav-links:hover{
+    background-color: #6d76f7;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+}
+
+
+.fa-bar{
+    color: white;
+}
+
+/* hide hambarger icon for desktop */
+.menu-icon{
+    display: none;
+    color: white;
+}
+
+
+
+
+
+
+@media screen and (max-width: 960px){
+    /* <nav> */
+    .NavbarItems{
+        position: relative;
+    }
+
+    /* <ul> */
+    .nav-menu{
+        display: flex;                  /* Flex */
+        flex-direction: column;         /* flex by column*/
+        width: 100%;                    /* set full width*/
+        min-height: 100vh;
+        position: absolute;             /* absolute positioning*/
+        left: -100%;                    /* hide it  */
+        top: 80px;                      /* same as header size*/
+        opacity: 1;                     /**/
+        transition: all .5s ease;       /* set animation*/
+        margin: 0; /* rd*/
+        justify-content: start;
+         
+    }
+    /* + */
+    .nav-menu.active{
+        background: #6668f4;
+        left: 0;
+        opacity: 1;
+        transition: all .5s ease;
+        z-index: 1;
+    }
+
+    .nav-links{
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }/* add hover for extra touch */
+
+    .navbar-logo{
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(25%, 50%);
+    }
+
+    .menu-icon{
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+}
