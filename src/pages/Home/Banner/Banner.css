@@ -1,0 +1,10 @@
+.Banner{
+    background: url(../../../img/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 43vw;
+    display: flex;
+    align-items: center;
+    padding: 9vw;
+    color: white;
+}
