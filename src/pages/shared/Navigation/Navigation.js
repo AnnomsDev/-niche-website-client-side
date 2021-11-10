@@ -2,12 +2,13 @@ import './Navigation.css'
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom'
 import useAuth from '../../../Hook/useAuth';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Navigation = () => {
     const [isMenueOpen, setIsMenueOpen] = useState(false)
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
 
 
     const handleClick = () => {
@@ -28,15 +29,23 @@ const Navigation = () => {
                 <li>
                     <NavLink className='nav-links' to='/Explore'>Explore</NavLink>
                 </li>
-                {!user && (
+                {!user.email && (
                     <li>
                         <NavLink className='nav-links' to='/signin'>Sign In</NavLink>
                     </li>
                 )}
-                {user && (
-                    <li>
-                        <Button variant='contained'>Sign Out</Button>
-                    </li>
+                {user.email && (
+                    <>
+                        <li>
+                            <Typography
+                                variant='p'
+                                sx={{ display: 'flex', color: 'white', alignItems: 'center', mx: '0.5em' }}
+                            ><AccountCircleIcon /> {user.displayName} </Typography>
+                        </li>
+                        <li>
+                            <Button variant='contained' onClick={logout}>Sign Out</Button>
+                        </li>
+                    </>
                 )}
 
 
