@@ -1,0 +1,16 @@
+.my-orders{
+
+}
+.my-orders table{
+    margin-top: 1em;
+    width: 100%;
+}
+
+.my-orders thead td{
+    font-weight: 700;
+    padding: .5em 0;
+}
+
+.my-orders tbody td{
+    padding: .3em 0;
+}

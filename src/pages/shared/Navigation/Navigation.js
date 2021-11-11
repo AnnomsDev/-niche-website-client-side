@@ -37,6 +37,9 @@ const Navigation = () => {
                 {user.email && (
                     <>
                         <li>
+                            <NavLink className='nav-links' to='/dashboard'>Dashboard</NavLink>
+                        </li>
+                        <li>
                             <Typography
                                 variant='p'
                                 sx={{ display: 'flex', color: 'white', alignItems: 'center', mx: '0.5em' }}

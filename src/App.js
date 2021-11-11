@@ -7,6 +7,7 @@ import AuthProvider from './context/AuthProvider';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import PrivateRoute from './pages/Signin/PrivateRoute/PrivateRoute';
 import Navigation from './pages/shared/Navigation/Navigation';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <PrivateRoute path='/place-order/:id'>
               <PlaceOrder />
+            </PrivateRoute>
+            <PrivateRoute path='/dashboard'>
+              <Dashboard />
             </PrivateRoute>
 
           </Switch>

@@ -1,0 +1,18 @@
+.Dashboard{
+    min-height: calc(100vh - 80px);
+    display: grid;
+    grid-template-columns: 2fr 6fr ;
+    grid-gap: 2em;
+
+}
+
+.Dashboard .links{
+    min-height: 100%;
+    display: flex;
+    border: 1px solid #000;
+}
+.Dashboard .main-content{
+    min-height: 100%;
+    border: 1px solid #000;
+
+}

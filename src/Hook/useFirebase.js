@@ -19,11 +19,28 @@ const useFirebase = () => {
     const [user, setUser] = useState({})
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+    const [isAdmin, setIsAdmin] = useState(false)
 
     const auth = getAuth()
     const googleProvider = new GoogleAuthProvider()
 
-
+    // get user role from DB and set idAdmin
+    const handleIsAdmin = email => {
+        axios.get(`http://localhost:5000/users/${email}`)
+            .then(res => {
+                const user = res.data
+                console.log('test user db', user)
+                if (user.role === 'admin') {
+                    setIsAdmin(true)
+                    console.log('admin')
+                }
+                else {
+                    setIsAdmin(false)
+                    console.log('not admin')
+                }
+            })
+            .catch(err => console.log('got an error: ', err))
+    }
 
 
     // sign in with gooogle
@@ -34,7 +51,11 @@ const useFirebase = () => {
                 const { email, displayName } = result.user
                 //send user data to DB
                 axios.put('http://localhost:5000/users', { email, displayName })
-                    .then(res => console.log('user added'))
+                    .then(res => {
+                        console.log('user added')
+                        handleIsAdmin(email)
+                    })
+
 
                 // clear error
                 setError('')
@@ -74,6 +95,10 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, pass)
             .then(result => {
+
+                // get role and set is
+                handleIsAdmin(email)
+
                 setError('') // Clear error
                 history.replace(redirectURI) // Redirect
 
@@ -104,6 +129,8 @@ const useFirebase = () => {
             }
             else {
                 setUser({})
+                // clear is admin
+                setIsAdmin(false)
             }
             setIsLoading(false)
         })
@@ -122,6 +149,7 @@ const useFirebase = () => {
 
     return {
         user,
+        isAdmin,
         error,
         isLoading,
         signInWithGoogle,
