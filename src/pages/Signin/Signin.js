@@ -37,7 +37,7 @@ const Signin = () => {
                 :
 
 
-                <form style={{ maxWidth: '300px' }}>
+                <form onSubmit={handleSignIn} style={{ maxWidth: '300px' }}>
                     <Typography
                         sx={{ fontWeight: 700, textAlign: 'center' }}
                         variant='h5'
@@ -65,7 +65,6 @@ const Signin = () => {
                         sx={{ width: '100%', mt: '1em' }}
                         type='submit'
                         variant='contained'
-                        onClick={handleSignIn}
                     > Sign In</Button>
                     {
                         error && <Alert severity="error">{error}</Alert>

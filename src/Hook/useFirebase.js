@@ -10,6 +10,7 @@ import {
     signInWithEmailAndPassword,
     signOut
 } from 'firebase/auth'
+import axios from "axios";
 
 // initialize firebase app
 initializeFirebase();
@@ -30,7 +31,10 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithPopup(auth, googleProvider)
             .then(result => {
+                const { email, displayName } = result.user
                 //send user data to DB
+                axios.put('http://localhost:5000/users', { email, displayName })
+                    .then(res => console.log('user added'))
 
                 // clear error
                 setError('')
@@ -46,8 +50,10 @@ const useFirebase = () => {
             .then(() => {
                 // clear error
                 setError('')
-
                 //send user data to DB
+                axios.put('http://localhost:5000/users', { email, displayName })
+                    .then(res => console.log('user added'))
+
                 const user = { email, displayName }
                 updateProfile(auth.currentUser, { displayName })
                     .then(() => {
@@ -68,9 +74,9 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, pass)
             .then(result => {
-                setError('')
-                // send email display name to db
-                history.replace(redirectURI)
+                setError('') // Clear error
+                history.replace(redirectURI) // Redirect
+
             }).catch(err => {
                 console.log('test rd:', err)
                 setError(err.code)

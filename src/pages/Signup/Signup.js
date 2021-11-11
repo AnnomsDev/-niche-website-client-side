@@ -6,7 +6,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 
 const Signup = () => {
-    const { signUpWithEmailPass, error, isLoading } = useAuth()
+    const { signUpWithEmailPass, signInWithGoogle, error, isLoading } = useAuth()
     const [userData, setUserData] = useState({})
 
     const location = useLocation();
@@ -35,7 +35,7 @@ const Signup = () => {
         <div className='signin-reg'>
             {isLoading ? <CircularProgress />
                 :
-                <form style={{ maxWidth: '300px' }}>
+                <form onSubmit={handleSignUp} style={{ maxWidth: '300px' }}>
                     <Typography
                         sx={{ fontWeight: 700, textAlign: 'center' }}
                         variant='h5'
@@ -80,7 +80,7 @@ const Signup = () => {
                         sx={{ width: '100%', mt: '1em' }}
                         type="submit"
                         variant='contained'
-                        onClick={handleSignUp}
+                    // onClick={handleSignUp}
                     > Sign Up</Button>
                     {
                         error && <Alert severity="error">{error}</Alert>
@@ -90,6 +90,7 @@ const Signup = () => {
                         sx={{ mt: '2em', width: '100%', fontWeight: 700 }}
                         variant='outlined'
                         startIcon={<GoogleIcon />}
+                        onClick={() => signInWithGoogle(history, redirectURI)}
                     > Continue with Google</Button>
 
                     <Typography variant='p' sx={{ mt: '1em' }}>
