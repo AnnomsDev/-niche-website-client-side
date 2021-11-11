@@ -114,8 +114,8 @@ const Products = () => {
             <Grid container spacing={{ xs: 2, md: '3em' }} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {
                     products.map((product, index) => (
-                        <Grid item xs={4} sm={4} md={4} >
-                            <Product key={index} {...product} />
+                        <Grid key={index} item xs={4} sm={4} md={4} >
+                            <Product {...product} />
                         </Grid>
                     ))
                 }

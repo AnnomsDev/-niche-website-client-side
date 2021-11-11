@@ -4,12 +4,17 @@ import Home from './pages/Home/Home/Home';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
 import AuthProvider from './context/AuthProvider';
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
+import PrivateRoute from './pages/Signin/PrivateRoute/PrivateRoute';
+import Navigation from './pages/shared/Navigation/Navigation';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
+          <Navigation />
+
           <Switch>
             <Route exact path='/'>
               <Home />
@@ -20,6 +25,9 @@ function App() {
             <Route path='/signup'>
               <Signup />
             </Route>
+            <PrivateRoute path='/place-order/:id'>
+              <PlaceOrder />
+            </PrivateRoute>
 
           </Switch>
         </Router>

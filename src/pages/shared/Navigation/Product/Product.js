@@ -3,7 +3,8 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Product = ({ title, img, price, camera, flight_time }) => {
+const Product = ({ title, img, price, camera, flight_time, _id }) => {
+
     return (
         <Box sx={{ color: '#20273A', p: '5px', }}>
             <img width='100%' height='auto' src={img} alt="" />
@@ -20,7 +21,7 @@ const Product = ({ title, img, price, camera, flight_time }) => {
                 <Typography variant='h5' sx={{ fontWeight: 700 }}>
                     <span style={{ color: '#1565C0' }}>$</span>{price}
                 </Typography>
-                <Link to='/place-order' style={{ textDecoration: 'none' }}>
+                <Link to={`/place-order/${_id}`} style={{ textDecoration: 'none' }}>
                     <Button variant='outlined' sx={{ fontWeight: 700 }}>Purchess</Button>
                 </Link>
             </Box>
