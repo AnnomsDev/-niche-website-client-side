@@ -105,11 +105,11 @@ const Products = () => {
 
     return (
         <Box
-            sx={{ mx: '9vw', my: '5em' }}
+            sx={{ mx: '9vw', my: '8em' }}
         >
             <Typography
                 variant='h4'
-                sx={{ fontWeight: 800, color: '#20273A', my: '1em' }}
+                sx={{ fontWeight: 800, color: '#20273A', my: '1.5em' }}
             >PRODUCTS</Typography>
             <Grid container spacing={{ xs: 2, md: '3em' }} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {
