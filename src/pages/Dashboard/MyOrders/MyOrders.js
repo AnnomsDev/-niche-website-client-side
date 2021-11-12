@@ -63,6 +63,7 @@ const MyOrders = () => {
                                 <TableCell >{order.status}</TableCell>
                                 <TableCell
                                     align="center"
+                                    sx={{ cursor: 'pointer' }}
                                     onClick={() => handleCancle(order._id)}
                                 ><CancelIcon /></TableCell>
                             </TableRow>

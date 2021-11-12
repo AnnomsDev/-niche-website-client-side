@@ -10,6 +10,7 @@ import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
 import AddProduct from './AddProduct/AddProduct';
 import AddReview from './AddReview/AddReview';
+import Pay from './Pay/Pay';
 
 const Dashboard = () => {
     const { path, url } = useRouteMatch();
@@ -26,7 +27,7 @@ const Dashboard = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         textDecoration: 'none',
-                        minHeight: '100vh',
+                        minHeight: 'calc(100vh - 80px)',
                         p: '1em',
                         pt: '3em'
                     }}>
@@ -34,6 +35,7 @@ const Dashboard = () => {
                     {!isAdmin && <>
                         <NavLink to={`${url}/my-orders`} style={linkStyle}>My Orders</NavLink>
                         <NavLink to={`${url}/review`} style={linkStyle}>Review</NavLink>
+                        <NavLink to={`${url}/pay`} style={linkStyle}>Pay</NavLink>
 
                     </>}
 
@@ -60,6 +62,9 @@ const Dashboard = () => {
                             </Route>
                             <Route path={`${path}/review`}>
                                 <AddReview />
+                            </Route>
+                            <Route path={`${path}/pay`}>
+                                <Pay />
                             </Route>
                         </>}
 
