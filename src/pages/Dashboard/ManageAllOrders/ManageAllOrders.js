@@ -62,7 +62,7 @@ const ManageAllOrders = () => {
                             <TableCell >Price</TableCell>
                             <TableCell >Status</TableCell>
                             <TableCell >Change Status</TableCell>
-                            <TableCell >Cancle</TableCell>
+                            <TableCell >Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -8,6 +8,7 @@ import MyOrders from './MyOrders/MyOrders';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
+import AddProduct from './AddProduct/AddProduct';
 
 const Dashboard = () => {
     const { path, url } = useRouteMatch();
@@ -64,6 +65,9 @@ const Dashboard = () => {
                             </AdminRoute>
                             <AdminRoute path={`${path}/make-admin`}>
                                 <MakeAdmin />
+                            </AdminRoute>
+                            <AdminRoute path={`${path}/add-product`}>
+                                <AddProduct />
                             </AdminRoute>
 
                         </>}
