@@ -48,12 +48,19 @@ const Dashboard = () => {
                 </Grid>
                 <Grid item md={9} sx={{ backgroundColor: '#F3F3F3', minHeight: "10vh ", p: '2em', pt: '3em' }}>
                     <Switch>
-                        <Route path={`${path}/my-orders`}>
-                            <MyOrders />
-                        </Route>
-                        <Route path={`${path}/review`}>
-                            <h2>Review</h2>
-                        </Route>
+
+                        {/* Routes for normal user */}
+                        {!isAdmin && <>
+                            <Route exact path={`${path}`}>
+                                <MyOrders />
+                            </Route>
+                            <Route path={`${path}/my-orders`}>
+                                <MyOrders />
+                            </Route>
+                            <Route path={`${path}/review`}>
+                                <h2>Review</h2>
+                            </Route>
+                        </>}
 
                         {/* Routes for admin */}
                         {isAdmin && <>
