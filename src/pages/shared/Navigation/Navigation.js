@@ -46,7 +46,11 @@ const Navigation = () => {
                             ><AccountCircleIcon /> {user.displayName} </Typography>
                         </li>
                         <li>
-                            <Button variant='contained' onClick={logout}>Sign Out</Button>
+                            <Button
+                                variant='outlined'
+                                onClick={logout}
+                                sx={{ color: 'white', borderColor: 'white', textTransform: 'none' }}
+                            >Sign Out</Button>
                         </li>
                     </>
                 )}
