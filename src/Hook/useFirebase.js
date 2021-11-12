@@ -30,7 +30,7 @@ const useFirebase = () => {
             .then(res => {
                 const user = res.data
                 console.log('test user db', user)
-                if (user.role === 'admin') {
+                if (user?.role === 'admin') {
                     setIsAdmin(true)
                     console.log('admin')
                 }
@@ -51,10 +51,8 @@ const useFirebase = () => {
                 const { email, displayName } = result.user
                 //send user data to DB
                 axios.put('http://localhost:5000/users', { email, displayName })
-                    .then(res => {
-                        console.log('user added')
-                        handleIsAdmin(email)
-                    })
+                    .then(res => console.log('user added'))
+                    .catch(err => console.log('Got an error', err))
 
 
                 // clear error
@@ -95,10 +93,6 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, pass)
             .then(result => {
-
-                // get role and set is
-                handleIsAdmin(email)
-
                 setError('') // Clear error
                 history.replace(redirectURI) // Redirect
 
@@ -126,6 +120,8 @@ const useFirebase = () => {
         const unsubscribed = onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user)
+                // Set is admin
+                handleIsAdmin(user.email)
             }
             else {
                 setUser({})
