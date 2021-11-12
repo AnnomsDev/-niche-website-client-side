@@ -8,6 +8,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import PrivateRoute from './pages/Signin/PrivateRoute/PrivateRoute';
 import Navigation from './pages/shared/Navigation/Navigation';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Explore from './pages/Explore/Explore';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <Route path='/signup'>
               <Signup />
+            </Route>
+            <Route path='/explore'>
+              <Explore />
             </Route>
             <PrivateRoute path='/place-order/:id'>
               <PlaceOrder />

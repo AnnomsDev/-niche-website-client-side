@@ -1,7 +1,9 @@
-import { Typography } from '@mui/material';
+import './Banner.css'
+import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import './Banner.css'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -16,6 +18,26 @@ const Banner = () => {
                 <Typography variant='p' >
                     The ultraportable Mavic Air features high-end flight performance and functionality for limitless exploration.
                 </Typography>
+                <br />
+                <Link
+                    to='/explore'
+                    style={{ textDecoration: 'none' }}
+                ><Button
+                    variant="contained"
+                    size='big'
+                    startIcon={<ArrowForwardIosIcon />}
+                    sx={{
+                        color: 'white',
+                        mt: { md: '3em' },
+                        fontWeight: 700,
+                        borderRadius: '200px',
+                        p: { md: '1em 2em' }
+                    }}
+                >
+                        Explore
+                    </Button>
+                </Link>
+
             </Box>
         </div>
     );
