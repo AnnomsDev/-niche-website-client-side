@@ -7,6 +7,7 @@ import AdminRoute from '../shared/AdminRoute/AdminRoute';
 import MyOrders from './MyOrders/MyOrders';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
+import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
 
 const Dashboard = () => {
     const { path, url } = useRouteMatch();
@@ -54,9 +55,19 @@ const Dashboard = () => {
                         </Route>
 
                         {/* Routes for admin */}
-                        <AdminRoute path={`${path}/make-admin`}>
-                            <MakeAdmin />
-                        </AdminRoute>
+                        {isAdmin && <>
+                            <AdminRoute exact path={`${path}`}>
+                                <ManageAllOrders />
+                            </AdminRoute>
+                            <AdminRoute path={`${path}/manage-all-orders`}>
+                                <ManageAllOrders />
+                            </AdminRoute>
+                            <AdminRoute path={`${path}/make-admin`}>
+                                <MakeAdmin />
+                            </AdminRoute>
+
+                        </>}
+
 
                     </Switch>
 
