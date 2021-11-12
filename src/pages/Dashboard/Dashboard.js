@@ -9,6 +9,7 @@ import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
 import AddProduct from './AddProduct/AddProduct';
+import AddReview from './AddReview/AddReview';
 
 const Dashboard = () => {
     const { path, url } = useRouteMatch();
@@ -58,7 +59,7 @@ const Dashboard = () => {
                                 <MyOrders />
                             </Route>
                             <Route path={`${path}/review`}>
-                                <h2>Review</h2>
+                                <AddReview />
                             </Route>
                         </>}
 
