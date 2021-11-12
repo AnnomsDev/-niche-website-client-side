@@ -1,6 +1,7 @@
 import React from 'react';
 import Products from '../../Products/Products';
 import Banner from '../Banner/Banner';
+import Footer from '../Footer/Footer';
 import Reviews from '../Reviews/Reviews';
 
 const Home = () => {
@@ -9,6 +10,8 @@ const Home = () => {
             <Banner />
             <Products />
             <Reviews />
+            {/* extra section here */}
+            <Footer />
         </div>
     );
 };
