@@ -21,16 +21,16 @@ const ManageAllOrders = () => {
     }, [ordersReloader])
 
     const handleDelete = id => {
-        axios.delete(`http://localhost:5000/orders/${id}`)
-            .then(res => {
-                const confirm = window.confirm('Do you want to cancle this order ?')
-                if (confirm) {
+        const confirm = window.confirm('Do you want to cancle this order ?')
+        if (confirm) {
+            axios.delete(`http://localhost:5000/orders/${id}`)
+                .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = orders.filter(order => order._id !== id)
                         setOrders(remaining)
                     }
-                }
-            })
+                })
+        }
     }
 
 
