@@ -11,6 +11,7 @@ import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
 import AddProduct from './AddProduct/AddProduct';
 import AddReview from './AddReview/AddReview';
 import Pay from './Pay/Pay';
+import ManageProducts from './ManageProducts/ManageProducts';
 
 const Dashboard = () => {
     const { path, url } = useRouteMatch();
@@ -42,6 +43,7 @@ const Dashboard = () => {
                     {/* All links for Admin*/}
                     {isAdmin && <>
                         <NavLink to={`${url}/manage-all-orders`} style={linkStyle}>Manage All Orders</NavLink>
+                        <NavLink to={`${url}/manage-products`} style={linkStyle}>Manage Products</NavLink>
                         <NavLink to={`${url}/add-product`} style={linkStyle}>Add Product</NavLink>
                         <NavLink to={`${url}/make-admin`} style={linkStyle}>Make Admin</NavLink>
 
@@ -75,6 +77,9 @@ const Dashboard = () => {
                             </AdminRoute>
                             <AdminRoute path={`${path}/manage-all-orders`}>
                                 <ManageAllOrders />
+                            </AdminRoute>
+                            <AdminRoute path={`${path}/manage-products`}>
+                                <ManageProducts />
                             </AdminRoute>
                             <AdminRoute path={`${path}/make-admin`}>
                                 <MakeAdmin />
