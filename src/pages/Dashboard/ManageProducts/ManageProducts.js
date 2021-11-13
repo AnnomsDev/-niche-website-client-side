@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -10,22 +12,52 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
+        // Toastify- show loading toast
+        const loadingOrders = toast.loading('Loading all Products')
         axios.get('https://shrouded-atoll-11239.herokuapp.com/products')
-            .then(res => setProducts(res.data))
+            .then(res => {
+                setProducts(res.data)
+                // Toastify- close loading toast with success message
+                toast.update(loadingOrders, {
+                    render: 'All Products loaded',
+                    type: 'success',
+                    isLoading: false,
+                    autoClose: 1000
+                })
+            })
+            .catch(err => {
+                // Toastify- close loading toast with Error message
+                toast.update(loadingOrders, {
+                    render: 'Got an error- loading Procucts',
+                    type: 'error',
+                    isLoading: false,
+                    autoClose: 1000
+                })
+                console.log('Got an error:', err)
+            })
     }, [])
 
     const handleDelete = id => {
         const confirm = window.confirm('Do you want to Delete this Product ?')
         if (confirm) {
+            // Toastify - show deleting toast
+            const deleting = toast.loading('Deleting one Product..')
             axios.delete(`https://shrouded-atoll-11239.herokuapp.com/products/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = products.filter(order => order._id !== id)
                         setProducts(remaining)
+                        // Toastify - close toast with success message
+                        toast.update(deleting, { render: 'One Product Deleted', type: 'info', isLoading: false, autoClose: 1500 })
                     }
                     else {
-                        alert('Delete failed!. please try again')
+                        // Toastify - close toast with error message
+                        toast.update(deleting, { render: 'Failed! Please try again', type: 'error', isLoading: false, autoClose: 1500 })
                     }
+                })
+                .catch(err => {
+                    // Toastify - close toast with Error message
+                    toast.update(deleting, { render: 'Failed! Please try again', type: 'error', isLoading: false, autoClose: 1500 })
                 })
         }
     }
@@ -81,6 +113,14 @@ const ManageProducts = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
+
+            {/* Toastify container */}
+            <ToastContainer
+                position='bottom-right'
+                autoClose={2000}
+            />
+
         </Box>
     );
 };
