@@ -3,6 +3,8 @@ import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useState } from 'react';
 import useAuth from '../../../Hook/useAuth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddReview = () => {
     const [rating, setRating] = useState(4);
@@ -26,8 +28,12 @@ const AddReview = () => {
                 console.log(res.data)
                 if (res.data.insertedId) {
                     e.target.reset()
-                    alert('review submited successfully')
+                    toast.success('Your Review is Submited')
                 }
+            })
+            .catch(err => {
+                console.log('Got an error adding review', err)
+                toast.error('Failed, please try again!')
             })
 
 
@@ -74,6 +80,15 @@ const AddReview = () => {
                 >Submit Review</Button>
 
             </form>
+
+
+
+            {/* Toastify container */}
+            <ToastContainer
+                position='bottom-right'
+                autoClose={2000}
+            />
+
         </Box>
     );
 };
