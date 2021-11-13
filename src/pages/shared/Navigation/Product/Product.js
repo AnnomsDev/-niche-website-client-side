@@ -7,7 +7,15 @@ const Product = ({ title, img, price, camera, flight_time, _id }) => {
 
     return (
         <Box sx={{ color: '#20273A', p: '5px', }}>
-            <img width='100%' height='auto' src={img} alt="" />
+            <Box sx={{
+                minHeight: "220px",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <img style={{ maxWidth: '315px' }} width='100%' src={img} alt="" />
+            </Box>
+
             <Typography variant='h5' sx={{ fontWeight: 700 }}>{title}</Typography>
             <Typography sx={{ color: 'gray' }}>
                 <b>Flight Time:</b> {flight_time} <br />
