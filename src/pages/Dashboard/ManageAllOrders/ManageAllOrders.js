@@ -12,21 +12,24 @@ import 'react-toastify/dist/ReactToastify.css';
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([])
     const [ordersReloader, setOrdersReloder] = useState(false)
+    const [reloadCount, setReloadCount] = useState(0)
 
     useEffect(() => {
         // Toastify- show loading toast
-        const loadingOrders = toast.loading('Loading all Orders')
+        const loadingOrders = !reloadCount && toast.loading('Loading all Orders')
         axios.get('https://shrouded-atoll-11239.herokuapp.com/orders')
             .then(res => {
                 console.log(res.data)
                 setOrders(res.data)
                 // Toastify- close loading toast with success message
-                toast.update(loadingOrders, {
+                !reloadCount && toast.update(loadingOrders, {
                     render: 'All order loaded',
                     type: 'success',
                     isLoading: false,
                     autoClose: 1000
                 })
+                //update reload count
+                setReloadCount(reloadCount + 1)
             })
             .catch(err => {
                 // Toastify- close loading toast with Error message
