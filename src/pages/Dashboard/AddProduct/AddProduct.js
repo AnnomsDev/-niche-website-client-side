@@ -3,6 +3,8 @@ import { Box } from '@mui/system';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
     const [productData, setProductData] = useState({})
@@ -17,21 +19,39 @@ const AddProduct = () => {
     }
 
     const handleAddProduct = e => {
-        console.log(productData)
-
+        const loadingOrders = toast.loading('Adding a new product..')
         axios.post('https://shrouded-atoll-11239.herokuapp.com/products', productData)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {
                     e.target.reset()
-                    alert('product added successfully')
+                    // Toastify- close loading toast with success message
+                    toast.update(loadingOrders, {
+                        render: 'Product added Successfully',
+                        type: 'success',
+                        isLoading: false,
+                        autoClose: 1000
+                    })
                 }
                 else {
-                    alert('Something went wrong, please try again')
+                    // Toastify- close loading toast with Error message
+                    toast.update(loadingOrders, {
+                        render: 'Add product Failed.!!',
+                        type: 'error',
+                        isLoading: false,
+                        autoClose: 1000
+                    })
                 }
             })
             .catch(err => {
-                console.log('got an error adding product', err)
+                // Toastify- close loading toast with Error message
+                toast.update(loadingOrders, {
+                    render: 'Add product Failed.!!',
+                    type: 'error',
+                    isLoading: false,
+                    autoClose: 1000
+                })
+                console.log('Got an error adding product:', err)
             })
 
         e.preventDefault()
@@ -104,6 +124,13 @@ const AddProduct = () => {
                     type='submit'
                 >Add Product</Button>
             </form>
+
+
+            {/* Toastify container */}
+            <ToastContainer
+                position='bottom-right'
+                autoClose={2000}
+            />
 
         </Box>
     );
