@@ -26,7 +26,7 @@ const Reviews = () => {
                 sx={{ fontWeight: 800, color: '#20273A', my: '1em' }}
             >WHAT <span style={{ color: '#1565C0' }}>CUSTOMMER</span> <br /> SAYS ABOUT US</Typography>
 
-            <Grid container spacing={{ xs: 2, md: '3em' }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid container spacing={{ xs: 2, md: '2em' }} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {
                     reviews.map((review, index) => (
                         <Grid key={index} item xs={4} sm={4} md={4} >

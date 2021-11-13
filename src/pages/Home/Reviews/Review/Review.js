@@ -4,7 +4,14 @@ import React from 'react';
 
 const Review = ({ displayName, feedback, rating }) => {
     return (
-        <Box>
+        <Box
+            sx={{
+                borderRadius: '5px',
+                p: ' .5em 1em',
+                boxShadow: '0 0 10px 4px #00000014',
+                minHeight: '100%'
+            }}
+        >
             <Typography
                 variant='h6'
                 sx={{ fontWeight: 700, fontSize: '1em', textTransform: 'capitalize' }}
