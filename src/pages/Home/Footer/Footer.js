@@ -14,9 +14,11 @@ const Footer = () => {
                 py: '3em'
             }}
         >
+            <img src="./drone.svg" alt="" height='30px' />
+
             <Typography
                 variant='h5'
-                sx={{ fontWeight: 800, mb: '5px' }}
+                sx={{ fontWeight: 800, mb: '10px' }}
             >DRONE<span style={{ color: '#1565C0' }}>ZZ</span> <br /></Typography>
             <Box>
                 <a href="http://www.github.com/annomsDev" target="_blank" rel="noopener noreferrer">

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import useAuth from '../../../Hook/useAuth';
 import { Button, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import logo from '../../../img/logo.svg'
 
 
 const Navigation = () => {
@@ -17,7 +18,8 @@ const Navigation = () => {
 
     return (
         <nav className='NavbarItems'>
-            <h1 className="navbar-logo">Drone</h1>
+            {/* <h1 className="navbar-logo">Drone</h1> */}
+            <img className="navbar-logo" src={logo} alt="logo" />
             <div className="menu-icon" onClick={handleClick}>
                 <i className={isMenueOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
             </div>
