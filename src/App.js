@@ -9,6 +9,7 @@ import PrivateRoute from './pages/Signin/PrivateRoute/PrivateRoute';
 import Navigation from './pages/shared/Navigation/Navigation';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Explore from './pages/Explore/Explore';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
               <Dashboard />
             </PrivateRoute>
 
+            <Route path='/*'>
+              <NotFound />
+            </Route>
           </Switch>
         </Router>
       </AuthProvider>
