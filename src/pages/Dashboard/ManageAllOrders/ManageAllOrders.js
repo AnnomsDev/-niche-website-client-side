@@ -12,7 +12,7 @@ const ManageAllOrders = () => {
     const [ordersReloader, setOrdersReloder] = useState(false)
 
     useEffect(() => {
-        axios.get('http://localhost:5000/orders')
+        axios.get('https://shrouded-atoll-11239.herokuapp.com/orders')
             .then(res => {
                 console.log(res.data)
                 setOrders(res.data)
@@ -23,7 +23,7 @@ const ManageAllOrders = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Do you want to cancle this order ?')
         if (confirm) {
-            axios.delete(`http://localhost:5000/orders/${id}`)
+            axios.delete(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = orders.filter(order => order._id !== id)
@@ -35,7 +35,7 @@ const ManageAllOrders = () => {
 
 
     const handleShift = id => {
-        axios.put(`http://localhost:5000/orders/${id}`)
+        axios.put(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
             .then(res => {
                 // reload orders
                 if (res.data.modifiedCount) {

@@ -26,7 +26,7 @@ const useFirebase = () => {
 
     // get user role from DB and set idAdmin
     const handleIsAdmin = email => {
-        axios.get(`http://localhost:5000/users/${email}`)
+        axios.get(`https://shrouded-atoll-11239.herokuapp.com/users/${email}`)
             .then(res => {
                 const user = res.data
                 console.log('test user db', user)
@@ -50,7 +50,7 @@ const useFirebase = () => {
             .then(result => {
                 const { email, displayName } = result.user
                 //send user data to DB
-                axios.put('http://localhost:5000/users', { email, displayName })
+                axios.put('https://shrouded-atoll-11239.herokuapp.com/users', { email, displayName })
                     .then(res => console.log('user added'))
                     .catch(err => console.log('Got an error', err))
 
@@ -70,7 +70,7 @@ const useFirebase = () => {
                 // clear error
                 setError('')
                 //send user data to DB
-                axios.put('http://localhost:5000/users', { email, displayName })
+                axios.put('https://shrouded-atoll-11239.herokuapp.com/users', { email, displayName })
                     .then(res => console.log('user added'))
 
                 const user = { email, displayName }

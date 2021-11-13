@@ -21,7 +21,7 @@ const AddReview = () => {
         }
         console.log(review)
 
-        axios.post('http://localhost:5000/reviews', review)
+        axios.post('https://shrouded-atoll-11239.herokuapp.com/reviews', review)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

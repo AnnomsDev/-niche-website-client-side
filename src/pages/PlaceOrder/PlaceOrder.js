@@ -14,7 +14,7 @@ const PlaceOrder = () => {
     const { _id, title, img, details, camera, flight_time, price } = product
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/products/${id}`)
+        axios.get(`https://shrouded-atoll-11239.herokuapp.com/products/${id}`)
             .then(res => setProduct(res.data))
             .catch(err => console.log('Got an error: ', err))
     }, [id])
@@ -26,7 +26,7 @@ const PlaceOrder = () => {
 
         const order = { email, productId, productName, price }
 
-        axios.post('http://localhost:5000/orders', order)
+        axios.post('https://shrouded-atoll-11239.herokuapp.com/orders', order)
             .then(res => {
                 if (res.data.insertedId) {
                     setIsOrderPlace(true)

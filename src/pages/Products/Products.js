@@ -9,7 +9,7 @@ const Products = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products?limit=6')
+        axios.get('https://shrouded-atoll-11239.herokuapp.com/products?limit=6')
             .then(res => setProducts(res.data))
     }, [])
 

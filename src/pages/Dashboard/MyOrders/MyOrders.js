@@ -11,7 +11,7 @@ const MyOrders = () => {
     const [myOrders, setMyOrders] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/orders/${user.email}`)
+        axios.get(`https://shrouded-atoll-11239.herokuapp.com/orders/${user.email}`)
             .then(res => setMyOrders(res.data))
             .catch(err => console.log('Got an error', err))
 
@@ -20,7 +20,7 @@ const MyOrders = () => {
     const handleCancle = id => {
         const confirm = window.confirm('Do you want to cancle this order ?')
         if (confirm) {
-            axios.delete(`http://localhost:5000/orders/${id}`)
+            axios.delete(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = myOrders.filter(order => order._id !== id)

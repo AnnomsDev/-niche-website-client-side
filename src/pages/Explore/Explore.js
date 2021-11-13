@@ -8,7 +8,7 @@ const Explore = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://shrouded-atoll-11239.herokuapp.com/products')
             .then(res => setProducts(res.data))
     }, [])
 

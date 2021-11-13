@@ -19,7 +19,7 @@ const AddProduct = () => {
     const handleAddProduct = e => {
         console.log(productData)
 
-        axios.post('http://localhost:5000/products', productData)
+        axios.post('https://shrouded-atoll-11239.herokuapp.com/products', productData)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

@@ -10,14 +10,14 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://shrouded-atoll-11239.herokuapp.com/products')
             .then(res => setProducts(res.data))
     }, [])
 
     const handleDelete = id => {
         const confirm = window.confirm('Do you want to Delete this Product ?')
         if (confirm) {
-            axios.delete(`http://localhost:5000/products/${id}`)
+            axios.delete(`https://shrouded-atoll-11239.herokuapp.com/products/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = products.filter(order => order._id !== id)
