@@ -4,6 +4,8 @@ import { Box } from '@mui/system';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -12,10 +14,30 @@ const ManageAllOrders = () => {
     const [ordersReloader, setOrdersReloder] = useState(false)
 
     useEffect(() => {
+        // Toastify- show loading toast
+        const loadingOrders = toast.loading('Loading all Orders')
         axios.get('https://shrouded-atoll-11239.herokuapp.com/orders')
             .then(res => {
                 console.log(res.data)
                 setOrders(res.data)
+                // Toastify- close loading toast with success message
+                toast.update(loadingOrders, {
+                    render: 'All order loaded',
+                    type: 'success',
+                    isLoading: false,
+                    autoClose: 1000
+                })
+            })
+            .catch(err => {
+                // Toastify- close loading toast with Error message
+                toast.update(loadingOrders, {
+                    render: 'Got an error- loading orders',
+                    type: 'error',
+                    isLoading: false,
+                    autoClose: 1000
+                })
+
+                console.log('got an error:', err)
             })
 
     }, [ordersReloader])
@@ -23,12 +45,21 @@ const ManageAllOrders = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Do you want to cancle this order ?')
         if (confirm) {
+            const deleting = toast.loading('Deleting one order..')
+
             axios.delete(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = orders.filter(order => order._id !== id)
                         setOrders(remaining)
+
+                        toast.update(deleting, { render: 'One order Deleted', type: 'info', isLoading: false, autoClose: 1500 })
+                    } else {
+                        toast.update(deleting, { render: 'Failed! Please try again', type: 'error', isLoading: false, autoClose: 1500 })
                     }
+                })
+                .catch(err => {
+                    toast.update(deleting, { render: 'Failed! Please try again', type: 'error', isLoading: false, autoClose: 1500 })
                 })
         }
     }
@@ -95,6 +126,13 @@ const ManageAllOrders = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            {/* Toastify container */}
+            <ToastContainer
+                position='bottom-right'
+                autoClose={2000}
+            />
+
         </Box>
     );
 };

@@ -3,14 +3,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useAuth from '../../Hook/useAuth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PlaceOrder = () => {
     const { id } = useParams()
     const { user } = useAuth()
     const [product, setProduct] = useState({})
-    const [isOrderPlaced, setIsOrderPlace] = useState(false)
-    console.log(id)
-
     const { _id, title, img, details, camera, flight_time, price } = product
 
     useEffect(() => {
@@ -29,13 +28,13 @@ const PlaceOrder = () => {
         axios.post('https://shrouded-atoll-11239.herokuapp.com/orders', order)
             .then(res => {
                 if (res.data.insertedId) {
-                    setIsOrderPlace(true)
+                    toast.success('Order placed Successfully')
+
                 }
             })
             .catch(err => {
                 console.log('Got an error placing order', err)
-                alert('Something went wrong!!, Please try again')
-
+                toast.error('Failed, please try again!')
             })
 
 
@@ -80,11 +79,15 @@ const PlaceOrder = () => {
                         sx={{ fontWeight: 700, my: '1em' }}
                         onClick={handlePlaceOrder}
                     >Place Order</Button>
-                    {isOrderPlaced && <Alert severity="success">Order placed Successfully</Alert>}
-
                 </Grid>
 
             </Grid>
+
+            {/* Toastify container */}
+            <ToastContainer
+                position='bottom-right'
+                autoClose={2000}
+            />
 
         </Container >
     );
