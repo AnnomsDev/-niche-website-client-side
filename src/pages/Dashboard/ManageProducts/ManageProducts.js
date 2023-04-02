@@ -14,7 +14,7 @@ const ManageProducts = () => {
     useEffect(() => {
         // Toastify- show loading toast
         const loadingOrders = toast.loading('Loading all Products')
-        axios.get('https://shrouded-atoll-11239.herokuapp.com/products')
+        axios.get('https://dronezz.onrender.com/products')
             .then(res => {
                 setProducts(res.data)
                 // Toastify- close loading toast with success message
@@ -42,7 +42,7 @@ const ManageProducts = () => {
         if (confirm) {
             // Toastify - show deleting toast
             const deleting = toast.loading('Deleting one Product..')
-            axios.delete(`https://shrouded-atoll-11239.herokuapp.com/products/${id}`)
+            axios.delete(`https://dronezz.onrender.com/products/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = products.filter(order => order._id !== id)

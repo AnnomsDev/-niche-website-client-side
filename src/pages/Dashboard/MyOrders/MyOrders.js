@@ -15,7 +15,7 @@ const MyOrders = () => {
     useEffect(() => {
         // Toastify- show loading toast
         const loadingOrders = toast.loading('Loading Orders')
-        axios.get(`https://shrouded-atoll-11239.herokuapp.com/orders/${user.email}`)
+        axios.get(`https://dronezz.onrender.com/orders/${user.email}`)
             .then(res => {
                 setMyOrders(res.data)
                 // Toastify- close loading toast with success message
@@ -45,7 +45,7 @@ const MyOrders = () => {
         if (confirm) {
             // Toastify- Show loading toast
             const deleting = toast.loading('Deleting one order..')
-            axios.delete(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
+            axios.delete(`https://dronezz.onrender.com/orders/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = myOrders.filter(order => order._id !== id)

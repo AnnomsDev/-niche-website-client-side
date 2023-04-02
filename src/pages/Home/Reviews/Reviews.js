@@ -8,7 +8,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        axios.get('https://shrouded-atoll-11239.herokuapp.com/reviews')
+        axios.get('https://dronezz.onrender.com/reviews')
             .then(res => {
                 setReviews(res.data)
                 console.log('review', res.data)

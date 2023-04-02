@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     const { _id, title, img, details, camera, flight_time, price } = product
 
     useEffect(() => {
-        axios.get(`https://shrouded-atoll-11239.herokuapp.com/products/${id}`)
+        axios.get(`https://dronezz.onrender.com/products/${id}`)
             .then(res => setProduct(res.data))
             .catch(err => console.log('Got an error: ', err))
     }, [id])
@@ -25,7 +25,7 @@ const PlaceOrder = () => {
 
         const order = { email, productId, productName, price }
 
-        axios.post('https://shrouded-atoll-11239.herokuapp.com/orders', order)
+        axios.post('https://dronezz.onrender.com/orders', order)
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Order placed Successfully')

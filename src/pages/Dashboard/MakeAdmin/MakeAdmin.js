@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     }
 
     const handleMakeAdmin = e => {
-        axios.put(`https://shrouded-atoll-11239.herokuapp.com/mkadmin/${email}`, {
+        axios.put(`https://dronezz.onrender.com/mkadmin/${email}`, {
             'requester': user.email
         })
             .then(res => {

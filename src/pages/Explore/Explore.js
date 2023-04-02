@@ -8,7 +8,7 @@ const Explore = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.get('https://shrouded-atoll-11239.herokuapp.com/products')
+        axios.get('https://dronezz.onrender.com/products')
             .then(res => setProducts(res.data))
     }, [])
 

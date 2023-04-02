@@ -20,7 +20,7 @@ const AddProduct = () => {
 
     const handleAddProduct = e => {
         const loadingOrders = toast.loading('Adding a new product..')
-        axios.post('https://shrouded-atoll-11239.herokuapp.com/products', productData)
+        axios.post('https://dronezz.onrender.com/products', productData)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

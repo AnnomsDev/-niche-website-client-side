@@ -17,7 +17,7 @@ const ManageAllOrders = () => {
     useEffect(() => {
         // Toastify- show loading toast
         const loadingOrders = !reloadCount && toast.loading('Loading all Orders')
-        axios.get('https://shrouded-atoll-11239.herokuapp.com/orders')
+        axios.get('https://dronezz.onrender.com/orders')
             .then(res => {
                 console.log(res.data)
                 setOrders(res.data)
@@ -50,7 +50,7 @@ const ManageAllOrders = () => {
         if (confirm) {
             const deleting = toast.loading('Deleting one order..')
 
-            axios.delete(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
+            axios.delete(`https://dronezz.onrender.com/orders/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remaining = orders.filter(order => order._id !== id)
@@ -69,7 +69,7 @@ const ManageAllOrders = () => {
 
 
     const handleShift = id => {
-        axios.put(`https://shrouded-atoll-11239.herokuapp.com/orders/${id}`)
+        axios.put(`https://dronezz.onrender.com/orders/${id}`)
             .then(res => {
                 // reload orders
                 if (res.data.modifiedCount) {
